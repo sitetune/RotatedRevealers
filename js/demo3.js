@@ -10,19 +10,19 @@
  */
 {
     class Revealer {
-        constructor(el, options) {
+        constructor(ele, options) {
             this.options = {
                 angle: 0
             };
             Object.assign(this.options, options);
 
             this.DOM = {};
-            this.DOM.el = el;
-            this.DOM.inner = this.DOM.el.firstElementChild;
+            this.DOM.ele = ele;
+            this.DOM.inner = this.DOM.ele.firstElementChild;
             
             this.DOM.inner.style.width = `calc(100vw * ${Math.abs(Math.cos(this.options.angle * Math.PI/180))} + 100vh * ${Math.abs(Math.sin(this.options.angle * Math.PI/180))})`;
             this.DOM.inner.style.height = `calc(100vw * ${Math.abs(Math.sin(this.options.angle * Math.PI/180))} + 100vh * ${Math.abs(Math.cos(this.options.angle * Math.PI/180))})`;
-            this.DOM.el.style.transform = `rotate3d(0,0,1,${this.options.angle}deg)`;
+            this.DOM.ele.style.transform = `rotate3d(0,0,1,${this.options.angle}deg)`;
 
             this.DOM.reverse = this.DOM.inner.querySelector('.content__reverse');
             if ( this.DOM.reverse ) {
@@ -51,7 +51,7 @@
     // some random letters
     let letters = firstPageContent.titleLetters.filter(_ => Math.random() < .5);
     // remaining
-    let otherletters = firstPageContent.titleLetters.filter(el => letters.indexOf(el) < 0);
+    let otherletters = firstPageContent.titleLetters.filter(ele => letters.indexOf(ele) < 0);
 
     // Second page's content.
     const secondPageContent = {
@@ -164,7 +164,7 @@
         enterHoverAnimationRunning = true;
         
         letters = firstPageContent.titleLetters.filter(_ => Math.random() < .5);
-        otherletters = firstPageContent.titleLetters.filter(el => letters.indexOf(el) < 0);
+        otherletters = firstPageContent.titleLetters.filter(ele => letters.indexOf(ele) < 0);
 
         new TimelineMax({onComplete: () => enterHoverAnimationRunning = false})
         .staggerTo(letters, 0.2, {
@@ -180,4 +180,4 @@
         }, 0.04, 0.2);
     };
     firstPageContent.enter.addEventListener('mouseenter', onEnterHoverFn);
-}
+};
